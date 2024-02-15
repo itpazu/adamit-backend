@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_layout_headers",
+  "info": {
+    "displayName": "Header",
+    "icon": "grid",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "AdamitLogo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.logo",
+      "required": true
+    },
+    "secondaryLogo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.logo"
+    },
+    "LanguageSwitcher": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.local-switcher",
+      "required": true
+    }
+  }
+}

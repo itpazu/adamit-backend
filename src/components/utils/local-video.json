@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_utils_local_videos",
+  "info": {
+    "displayName": "LocalVideo",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "video": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "required": true,
+      "default": "video/mp4"
+    },
+    "src": {
+      "type": "string",
+      "required": false
+    },
+    "videoSettings": {
+      "type": "component",
+      "repeatable": false,
+      "component": "utils.video-object",
+      "required": true
+    }
+  }
+}

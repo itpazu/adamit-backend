@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_views_galleries",
+  "info": {
+    "displayName": "Gallery",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "regex": "^g[1-9]{1,2}$",
+      "required": true
+    },
+    "pics": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

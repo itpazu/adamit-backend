@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_views_materials",
+  "info": {
+    "displayName": "Materials",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "download",
+        "link"
+      ],
+      "required": true,
+      "enumName": "typedowenloadlink"
+    },
+    "files": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

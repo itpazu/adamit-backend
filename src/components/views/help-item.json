@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_views_help_items",
+  "info": {
+    "displayName": "HelpItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "json",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "kind": "singleType",
+  "collectionName": "call_for_actions",
+  "info": {
+    "singularName": "call-for-action",
+    "pluralName": "call-for-actions",
+    "displayName": "CallForAction",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "subTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "DonateChannelButton": {
+      "displayName": "DonateChannelButton",
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "views.donate-channel-button",
+      "required": true,
+      "min": 1
+    },
+    "ContactDetails": {
+      "displayName": "ContactDetails",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "views.contact-details"
+    },
+    "contactForm": {
+      "displayName": "Contact Form",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "views.contact-form",
+      "required": true
+    },
+    "additionalMaterial": {
+      "displayName": "AdditionalMaterial",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "views.additional-material",
+      "required": true
+    }
+  }
+}

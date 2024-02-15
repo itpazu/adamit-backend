@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_views_additional_materials",
+  "info": {
+    "displayName": "AdditionalMaterial",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "materials": {
+      "displayName": "Materials",
+      "type": "component",
+      "repeatable": true,
+      "component": "views.materials",
+      "required": true,
+      "min": 1
+    }
+  }
+}

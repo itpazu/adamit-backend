@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_utils_video_sources",
+  "info": {
+    "displayName": "VideoSourceExternal",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "video/mp4",
+        "video/youtube"
+      ],
+      "default": "video/mp4"
+    },
+    "src": {
+      "type": "string",
+      "required": true,
+      "regex": "^\\/[a-zA-Z0-9_.-]+$|(http[s]?:\\/\\/)?([^\\/\\s]+\\/)(.*)"
+    },
+    "videoSettings": {
+      "type": "component",
+      "repeatable": false,
+      "component": "utils.video-object",
+      "required": true
+    }
+  }
+}

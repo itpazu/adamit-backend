@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_utils_video_objects",
+  "info": {
+    "displayName": "videoObject"
+  },
+  "options": {},
+  "attributes": {
+    "autoplay": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "responsive": {
+      "type": "boolean",
+      "default": true
+    },
+    "muted": {
+      "type": "boolean",
+      "default": true
+    },
+    "fill": {
+      "type": "boolean",
+      "default": false
+    },
+    "loop": {
+      "type": "boolean",
+      "default": false
+    },
+    "fluid": {
+      "type": "boolean",
+      "default": true
+    },
+    "controls": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_views_contact_details",
+  "info": {
+    "displayName": "ContactSection",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "contacts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contact.contact"
+    }
+  }
+}

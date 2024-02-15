@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_layout_local_switchers",
+  "info": {
+    "displayName": "LocalSwitcher"
+  },
+  "options": {},
+  "attributes": {
+    "flags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::flag.flag"
+    }
+  }
+}

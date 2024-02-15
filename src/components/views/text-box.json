@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_views_text_boxes",
+  "info": {
+    "displayName": "TextBox",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "textNumber": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

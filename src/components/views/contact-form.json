@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_views_contact_forms",
+  "info": {
+    "displayName": "Contact Form",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "default": "name"
+    },
+    "email": {
+      "type": "string",
+      "default": "email",
+      "required": true
+    },
+    "contactArea": {
+      "type": "string",
+      "required": true,
+      "default": "contact"
+    },
+    "submitButton": {
+      "type": "string",
+      "default": "submit",
+      "required": true
+    },
+    "sendErrorMessage": {
+      "type": "string",
+      "required": true
+    },
+    "sendSuccessMessage": {
+      "type": "string",
+      "required": true
+    },
+    "shareContactRequest": {
+      "type": "blocks",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

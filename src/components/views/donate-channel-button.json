@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_views_donate_channel_buttons",
+  "info": {
+    "displayName": "DonateChannelButton"
+  },
+  "options": {},
+  "attributes": {
+    "paymentType": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "buttonText": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_views_emails",
+  "info": {
+    "displayName": "email",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "emailAddress": {
+      "type": "email",
+      "required": true,
+      "default": "kehilaadamit@gmail.com"
+    },
+    "type": {
+      "type": "string",
+      "required": true,
+      "default": "email"
+    },
+    "fieldName": {
+      "type": "string",
+      "default": "email",
+      "required": true
+    }
+  }
+}
