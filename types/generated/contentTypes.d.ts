@@ -708,19 +708,6 @@ export interface ApiCallForActionCallForAction extends Schema.SingleType {
           localized: true;
         };
       }>;
-    DonateChannelButton: Attribute.Component<
-      'views.donate-channel-button',
-      true
-    > &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
     ContactDetails: Attribute.Component<'views.contact-details'> &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -735,6 +722,16 @@ export interface ApiCallForActionCallForAction extends Schema.SingleType {
         };
       }>;
     additionalMaterial: Attribute.Component<'views.additional-material'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    DonateChannelButton: Attribute.Component<
+      'views.donate-channel-button',
+      true
+    > &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -948,12 +945,6 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
           localized: true;
         };
       }>;
-    DonateNowLink: Attribute.Component<'navigation.link'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     PickVideo: Attribute.DynamicZone<
       ['utils.local-video', 'utils.video-source']
     > &
@@ -1003,6 +994,13 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
+        };
+      }>;
+    DonateNowLink: Attribute.Component<'navigation.link'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
         };
       }>;
     createdAt: Attribute.DateTime;

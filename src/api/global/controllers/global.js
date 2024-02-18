@@ -7,6 +7,7 @@ const { createCoreController } = require("@strapi/strapi").factories;
 module.exports = createCoreController("api::global.global", ({ strapi }) => ({
   async find(ctx) {
     const result = await super.find(ctx);
+    console.log(ctx);
     const {
       data: {
         attributes: { PickVideo, DonateNowLink },

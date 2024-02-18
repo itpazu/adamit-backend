@@ -34,19 +34,6 @@
       "type": "string",
       "required": true
     },
-    "DonateChannelButton": {
-      "displayName": "DonateChannelButton",
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "views.donate-channel-button",
-      "required": true,
-      "min": 1
-    },
     "ContactDetails": {
       "displayName": "ContactDetails",
       "type": "component",
@@ -80,6 +67,17 @@
         }
       },
       "component": "views.additional-material",
+      "required": true
+    },
+    "DonateChannelButton": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "views.donate-channel-button",
       "required": true
     }
   }

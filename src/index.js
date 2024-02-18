@@ -20,7 +20,6 @@ module.exports = {
         ComponentUtilsVideoObject: {
           sources: {
             resolve: async (a, args) => {
-              console.log("args", args);
               const { PickVideo } = await strapi.services[
                 "api::global.global"
               ].find({
@@ -44,13 +43,14 @@ module.exports = {
         },
         Global: {
           DonateNowLink: {
-            resolve: async () => {
+            resolve: async (parent) => {
               const { DonateNowLink } = await strapi.services[
                 "api::global.global"
               ].find({
                 populate: ["DonateNowLink"],
+                locale: parent.locale,
               });
-
+              console.log(DonateNowLink);
               if (DonateNowLink.isInternal) {
                 DonateNowLink.url = `#${DonateNowLink.url}`;
               }
@@ -66,7 +66,6 @@ module.exports = {
                   PickVideo: { populate: { video: true, videoSettings: true } },
                 },
               });
-              // console.log(data.PickVideo[0].videoSettings);
               const { PickVideo } = data;
               PickVideo.forEach((el) => {
                 if (el.__component === "utils.local-video") {

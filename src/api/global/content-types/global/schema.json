@@ -36,16 +36,6 @@
         }
       }
     },
-    "DonateNowLink": {
-      "type": "component",
-      "repeatable": false,
-      "component": "navigation.link",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "PickVideo": {
       "type": "dynamiczone",
       "components": [
@@ -115,6 +105,17 @@
           "localized": false
         }
       }
+    },
+    "DonateNowLink": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "navigation.link",
+      "required": true
     }
   }
 }

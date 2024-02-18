@@ -78,15 +78,13 @@ export interface NavigationLink extends Schema.Component {
   collectionName: 'components_navigation_links';
   info: {
     displayName: 'Link';
-    icon: 'link';
-    description: '';
   };
   attributes: {
-    url: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'help-section'>;
     text: Attribute.String & Attribute.Required;
-    isInternal: Attribute.Boolean & Attribute.DefaultTo<false>;
+    url: Attribute.String & Attribute.Required;
+    isInternal: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
   };
 }
 
