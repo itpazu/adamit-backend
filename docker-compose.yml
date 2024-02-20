@@ -16,6 +16,7 @@ services:
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       NODE_ENV: ${NODE_ENV}
+      NODE_OPTIONS: "--max-old-space-size=4096"
     volumes:
       - ./config:/opt/app/config
       - ./src:/opt/app/src

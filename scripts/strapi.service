@@ -1,0 +1,10 @@
+[Unit]
+Description=adamit www service
+
+[Service]
+# N.B. If you didn't create a user with the correct home directory, set this
+#      to the directory where config.yaml is (e.g. /opt/mautrix-telegram).
+User=dockerprod
+Type=simple
+WorkingDirectory=/repos/adamit-backend 
+ExecStart=/repos/adamit-backend/scripts/run_server.sh
