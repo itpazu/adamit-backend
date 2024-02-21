@@ -916,12 +916,12 @@ export interface ApiFlagFlag extends Schema.CollectionType {
   };
 }
 
-export interface ApiGlobalGlobal extends Schema.SingleType {
-  collectionName: 'globals';
+export interface ApiFundRaisingFundRaising extends Schema.SingleType {
+  collectionName: 'fund_raisings';
   info: {
-    singularName: 'global';
-    pluralName: 'globals';
-    displayName: 'Global';
+    singularName: 'fund-raising';
+    pluralName: 'fund-raisings';
+    displayName: 'FundRaising';
     description: '';
   };
   options: {
@@ -934,12 +934,7 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
   };
   attributes: {
     seo: Attribute.Component<'metadata.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    Header: Attribute.Component<'layout.header'> &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1007,6 +1002,68 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
+      'api::fund-raising.fund-raising',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::fund-raising.fund-raising',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::fund-raising.fund-raising',
+      'oneToMany',
+      'api::fund-raising.fund-raising'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiGlobalGlobal extends Schema.SingleType {
+  collectionName: 'globals';
+  info: {
+    singularName: 'global';
+    pluralName: 'globals';
+    displayName: 'Global';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    seo: Attribute.Component<'metadata.seo'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Header: Attribute.Component<'layout.header'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    DonateNowLink: Attribute.Component<'navigation.link'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
       'api::global.global',
       'oneToOne',
       'admin::user'
@@ -1047,6 +1104,7 @@ declare module '@strapi/types' {
       'api::contact.contact': ApiContactContact;
       'api::donate-page.donate-page': ApiDonatePageDonatePage;
       'api::flag.flag': ApiFlagFlag;
+      'api::fund-raising.fund-raising': ApiFundRaisingFundRaising;
       'api::global.global': ApiGlobalGlobal;
     }
   }

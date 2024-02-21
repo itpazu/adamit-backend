@@ -19,9 +19,9 @@ module.exports = {
       resolvers: {
         ComponentUtilsVideoObject: {
           sources: {
-            resolve: async (a, args) => {
+            resolve: async (_, args) => {
               const { PickVideo } = await strapi.services[
-                "api::global.global"
+                "api::fund-raising.fund-raising"
               ].find({
                 populate: {
                   PickVideo: {
@@ -41,27 +41,12 @@ module.exports = {
             },
           },
         },
-        Global: {
-          DonateNowLink: {
-            resolve: async (parent) => {
-              const { DonateNowLink } = await strapi.services[
-                "api::global.global"
-              ].find({
-                populate: ["DonateNowLink"],
-                locale: parent.locale,
-              });
-              console.log(DonateNowLink);
-              if (DonateNowLink.isInternal) {
-                DonateNowLink.url = `#${DonateNowLink.url}`;
-              }
-
-              return DonateNowLink;
-            },
-          },
-
+        FundRaising: {
           PickVideo: {
             resolve: async () => {
-              const data = await strapi.services["api::global.global"].find({
+              const data = await strapi.services[
+                "api::fund-raising.fund-raising"
+              ].find({
                 populate: {
                   PickVideo: { populate: { video: true, videoSettings: true } },
                 },
@@ -75,6 +60,23 @@ module.exports = {
               });
 
               return PickVideo;
+            },
+          },
+        },
+        Global: {
+          DonateNowLink: {
+            resolve: async (parent) => {
+              const { DonateNowLink } = await strapi.services[
+                "api::global.global"
+              ].find({
+                populate: ["DonateNowLink"],
+                locale: parent.locale,
+              });
+              if (DonateNowLink.isInternal) {
+                DonateNowLink.url = `#${DonateNowLink.url}`;
+              }
+
+              return DonateNowLink;
             },
           },
         },
