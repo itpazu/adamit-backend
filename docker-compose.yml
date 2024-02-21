@@ -1,0 +1,107 @@
+version: '3'
+services:
+  strapi:
+    container_name: strapi
+    build: .
+    image: strapi:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: strapiDB
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PORT: ${DATABASE_PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      NODE_ENV: ${NODE_ENV}
+      NODE_OPTIONS: "--max-old-space-size=4096"
+      BASE_HOST: ${BASE_HOST}
+    volumes:
+      # Configurations
+      - ./config:/opt/app/config
+      - ./src:/opt/app/src
+      - ./package.json:/opt/package.json
+      - ./package-lock.json:/opt/package-lock.json
+      # Env link
+      - ./.env:/opt/app/.env
+      # Data volumes
+      - strapi-public:/opt/app/public
+    ports:
+      - ':1337'
+    networks:
+      - strapi
+    depends_on:
+      - strapiDB
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.strapi.entrypoints=websecure"
+
+      - "traefik.http.routers.strapi.rule=Host(`${BASE_HOST}`)"      
+      - "traefik.http.routers.strapi.tls=true"
+      - "traefik.http.routers.strapi.tls.certresolver=letsencrypt"
+
+      - "traefik.http.services.strapi.loadbalancer.server.port=1337"
+
+  strapiDB:
+    container_name: strapiDB
+    platform: linux/amd64 #for platform error on Apple M1 chips
+    restart: unless-stopped
+    env_file: .env
+    image: postgres:14.5-alpine
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - strapi-data:/var/lib/postgresql/data/ #using a volume
+      #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
+
+    ports:
+      - ':5432'
+    networks:
+      - strapi
+      
+  strapiAdminer:
+    container_name: strapiAdminer
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - ':8080'
+    environment:
+      - ADMINER_DEFAULT_SERVER=strapiDB
+    networks:
+      - strapi
+    depends_on:
+      - strapiDB
+
+  reverse-proxy:
+    container_name: reverse-proxy
+    # The official v2 Traefik docker image
+    image: traefik:latest
+    # Enables the web UI and tells Traefik to listen to docker
+    ports:
+      # The HTTP port
+      - "80:80"
+      - "443:443"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik-public-certificates:/certificates"
+      # Configurations
+      - ./traefik.prod.toml:/etc/traefik/traefik.toml
+    networks:
+      - strapi
+    #labels:
+    #  - "traefik.enable=true"
+
+volumes:
+  strapi-data:
+  strapi-public:
+
+networks:
+  strapi:
+    name: Strapi
+    driver: bridge
+    
