@@ -18,20 +18,31 @@ services:
       NODE_ENV: ${NODE_ENV}
       NODE_OPTIONS: "--max-old-space-size=4096"
     volumes:
+      # Configurations
       - ./config:/opt/app/config
       - ./src:/opt/app/src
       - ./package.json:/opt/package.json
       - ./package-lock.json:/opt/package-lock.json
-
+      # Env link
       - ./.env:/opt/app/.env
-      - ./public/uploads:/opt/app/public/uploads
+      # Data volumes
+      - strapi-uploads:/opt/app/public/uploads
     ports:
-      - '1337:1337'
+      - ':1337'
     networks:
       - strapi
     depends_on:
       - strapiDB
-      
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.strapi.entrypoints=websecure"
+
+      - "traefik.http.routers.strapi.rule=Host(`${BASE_HOST}`)"      
+      - "traefik.http.routers.strapi.tls=true"
+      - "traefik.http.routers.strapi.tls.certresolver=letsencrypt"
+
+      - "traefik.http.services.strapi.loadbalancer.server.port=1337"
+
   strapiDB:
     container_name: strapiDB
     platform: linux/amd64 #for platform error on Apple M1 chips
@@ -47,7 +58,7 @@ services:
       #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
 
     ports:
-      - '5432:5432'
+      - ':5432'
     networks:
       - strapi
       
@@ -56,7 +67,7 @@ services:
     image: adminer
     restart: unless-stopped
     ports:
-      - '9090:8080'
+      - ':8080'
     environment:
       - ADMINER_DEFAULT_SERVER=strapiDB
     networks:
@@ -64,10 +75,32 @@ services:
     depends_on:
       - strapiDB
 
+  reverse-proxy:
+    container_name: reverse-proxy
+    # The official v2 Traefik docker image
+    image: traefik:latest
+    # Enables the web UI and tells Traefik to listen to docker
+    ports:
+      # The HTTP port
+      - "80:80"
+      - "443:443"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik-public-certificates:/certificates"
+      # Configurations
+      - ./traefik.prod.toml:/etc/traefik/traefik.toml
+    networks:
+      - strapi
+    #labels:
+    #  - "traefik.enable=true"
+
 volumes:
   strapi-data:
+  strapi-uploads:
 
 networks:
   strapi:
     name: Strapi
     driver: bridge
+    
