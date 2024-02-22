@@ -9,8 +9,9 @@ const { createCoreController } = require("@strapi/strapi").factories;
 module.exports = createCoreController(
   "api::fund-raising.fund-raising",
   ({ strapi }) => ({
-    async find() {
-      const result = await super.find();
+    async find(ctx) {
+      const result = await super.find(ctx);
+      console.log(result);
       const {
         data: {
           attributes: { PickVideo },
@@ -26,7 +27,6 @@ module.exports = createCoreController(
           1,
           {
             populate: {
-              DonateNowLink: true,
               PickVideo: { populate: { video: true } },
             },
           }
