@@ -7,7 +7,7 @@ Description=Cron job
 OnBootSec=60
 # Start first time only after specific time
 # daily
-OnCalendar=*-*-* 00:01:00
+OnCalendar=*-*-* 07:01:00
 #OnCalendar=*-*-* *:11:00 # testing
 # Time between running each consecutive time
 OnUnitActiveSec=24hr
