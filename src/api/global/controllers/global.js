@@ -5,20 +5,15 @@
 const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::global.global", ({ strapi }) => ({
-  async find() {
-    const result = await super.find();
+  async find(ctx) {
+    const result = await super.find(ctx);
     const {
       data: {
         attributes: { DonateNowLink },
       },
     } = result;
 
-    const entry = await strapi.entityService.findOne("api::global.global", 1, {
-      populate: {
-        DonateNowLink: true,
-      },
-    });
-    if (entry?.DonateNowLink?.isInternal) {
+    if (DonateNowLink) {
       DonateNowLink.url = `#${DonateNowLink.url}`;
     }
     return result;

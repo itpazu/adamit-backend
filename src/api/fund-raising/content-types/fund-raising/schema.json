@@ -95,17 +95,6 @@
           "localized": false
         }
       }
-    },
-    "DonateNowLink": {
-      "type": "component",
-      "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "navigation.link",
-      "required": true
     }
   }
 }

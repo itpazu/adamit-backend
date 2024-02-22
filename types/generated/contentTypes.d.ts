@@ -991,13 +991,6 @@ export interface ApiFundRaisingFundRaising extends Schema.SingleType {
           localized: false;
         };
       }>;
-    DonateNowLink: Attribute.Component<'navigation.link'> &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
