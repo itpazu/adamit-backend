@@ -4,7 +4,7 @@ Description=Cron job
 
 [Timer]
 # Time to wait after booting before we run first time
-OnBootSec=60
+#OnBootSec=60
 # Start first time only after specific time
 # daily
 OnCalendar=*-*-* 07:01:00
