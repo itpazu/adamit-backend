@@ -977,13 +977,6 @@ export interface ApiFundRaisingFundRaising extends Schema.SingleType {
       Attribute.SetMinMax<{
         min: 1;
       }>;
-    gallery: Attribute.Component<'views.gallery', true> &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
     klitaImage: Attribute.Media &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -991,6 +984,11 @@ export interface ApiFundRaisingFundRaising extends Schema.SingleType {
           localized: false;
         };
       }>;
+    galleries: Attribute.Relation<
+      'api::fund-raising.fund-raising',
+      'oneToMany',
+      'api::gallery.gallery'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1012,6 +1010,38 @@ export interface ApiFundRaisingFundRaising extends Schema.SingleType {
       'api::fund-raising.fund-raising'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiGalleryGallery extends Schema.CollectionType {
+  collectionName: 'galleries';
+  info: {
+    singularName: 'gallery';
+    pluralName: 'galleries';
+    displayName: 'Gallery';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    pics: Attribute.Media & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gallery.gallery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gallery.gallery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -1098,6 +1128,7 @@ declare module '@strapi/types' {
       'api::donate-page.donate-page': ApiDonatePageDonatePage;
       'api::flag.flag': ApiFlagFlag;
       'api::fund-raising.fund-raising': ApiFundRaisingFundRaising;
+      'api::gallery.gallery': ApiGalleryGallery;
       'api::global.global': ApiGlobalGlobal;
     }
   }

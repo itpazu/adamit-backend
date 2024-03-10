@@ -72,17 +72,6 @@
       "required": true,
       "min": 1
     },
-    "gallery": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "component": "views.gallery",
-      "required": true
-    },
     "klitaImage": {
       "type": "media",
       "multiple": false,
@@ -95,6 +84,11 @@
           "localized": false
         }
       }
+    },
+    "galleries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::gallery.gallery"
     }
   }
 }
