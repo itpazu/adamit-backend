@@ -146,9 +146,12 @@ export interface ViewsAdditionalMaterial extends Schema.Component {
     title: Attribute.String & Attribute.Required;
     materials: Attribute.Component<'views.materials', true> &
       Attribute.Required &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
   };
 }
 
@@ -223,11 +226,13 @@ export interface ViewsGallery extends Schema.Component {
   collectionName: 'components_views_galleries';
   info: {
     displayName: 'Gallery';
-    description: '';
   };
   attributes: {
-    name: Attribute.String & Attribute.Required;
-    pics: Attribute.Media & Attribute.Required;
+    gallery: Attribute.Relation<
+      'views.gallery',
+      'oneToOne',
+      'api::gallery.gallery'
+    >;
   };
 }
 
@@ -240,6 +245,16 @@ export interface ViewsHelpItem extends Schema.Component {
   attributes: {
     header: Attribute.String & Attribute.Required;
     items: Attribute.JSON & Attribute.Required;
+  };
+}
+
+export interface ViewsImage extends Schema.Component {
+  collectionName: 'components_views_images';
+  info: {
+    displayName: 'image';
+  };
+  attributes: {
+    image: Attribute.Media & Attribute.Required;
   };
 }
 
@@ -305,6 +320,7 @@ declare module '@strapi/types' {
       'views.email': ViewsEmail;
       'views.gallery': ViewsGallery;
       'views.help-item': ViewsHelpItem;
+      'views.image': ViewsImage;
       'views.materials': ViewsMaterials;
       'views.phone': ViewsPhone;
       'views.text-box': ViewsTextBox;

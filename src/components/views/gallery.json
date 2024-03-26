@@ -1,23 +1,14 @@
 {
   "collectionName": "components_views_galleries",
   "info": {
-    "displayName": "Gallery",
-    "description": ""
+    "displayName": "Gallery"
   },
   "options": {},
   "attributes": {
-    "name": {
-      "type": "string",
-      "regex": "^g[1-9]{1,2}$",
-      "required": true
-    },
-    "pics": {
-      "type": "media",
-      "multiple": true,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+    "gallery": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::gallery.gallery"
     }
   }
 }
